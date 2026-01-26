@@ -85,8 +85,9 @@ PostgreSQL database configured via Docker. Environment variables are loaded from
 ## Environment Setup
 
 1. Copy `.sample.env` to `.env` and configure credentials
-2. Use Docker for local development: `docker compose up`
-3. Start frontend by running `npm run dev` in the `frontend` directory
+2. **Generate JWT_SECRET**: Run `openssl rand -base64 32` and paste the result into `.env`
+3. Use Docker for local development: `docker compose up`
+4. Start frontend by running `npm run dev` in the `frontend` directory
 
 ### Sample `.env` (root)
 
