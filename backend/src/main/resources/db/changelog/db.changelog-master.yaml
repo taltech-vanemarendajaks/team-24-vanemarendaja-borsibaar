@@ -594,7 +594,7 @@ databaseChangeLog:
         - sql:
             sql: >
               INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
-              SELECT 2, c.id, 'Red Bull Suhkruvaba', 'Energeetiline jook (suhkruvaba)', 4.00, NULL, NULL
+              SELECT 2, c.id, 'Red Bull suhkruvaba', 'Energeetiline jook (suhkruvaba)', 4.00, NULL, NULL
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Alkovaba';
         - sql:
             sql: >
@@ -730,7 +730,7 @@ databaseChangeLog:
         - sql:
             sql: >
               INSERT INTO inventory (organization_id, product_id, quantity)
-              SELECT 2, p.id, 200 FROM products p WHERE p.organization_id = 2 AND p.name = 'Red Bull Suhkruvaba';
+              SELECT 2, p.id, 200 FROM products p WHERE p.organization_id = 2 AND p.name = 'Red Bull suhkruvaba';
         - sql:
             sql: >
               INSERT INTO inventory (organization_id, product_id, quantity)
