@@ -1,5 +1,6 @@
 package com.borsibaar.controller;
 
+import com.borsibaar.dto.LogoutResponseDto;
 import com.borsibaar.service.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<LogoutResponseDto> logout(HttpServletRequest request, HttpServletResponse response) {
         // Invalidate the server-side session (removes OAuth2 authentication)
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -58,9 +59,7 @@ public class AuthController {
         jwtCookie.setMaxAge(0); // Expire immediately
         response.addCookie(jwtCookie);
 
-        return ResponseEntity.ok().body(new LogoutResponse("Logged out successfully"));
+        return ResponseEntity.ok().body(new LogoutResponseDto("Logged out successfully"));
     }
 
-    private record LogoutResponse(String message) {
-    }
 }
