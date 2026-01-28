@@ -61,6 +61,4 @@ public class AuthController {
         return ResponseEntity.ok().body(new LogoutResponse("Logged out successfully"));
     }
 
-    private record LogoutResponse(String message) {
-    }
 }
