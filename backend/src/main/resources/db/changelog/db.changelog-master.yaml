@@ -626,12 +626,12 @@ databaseChangeLog:
         - sql:
             sql: >
               INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
-              SELECT 2, c.id, 'Error 404', 'Maja shott', 4.50, 4.00, 9.00
+              SELECT 2, c.id, 'Error 404 4 cl', 'Maja shott', 4.50, 4.00, 9.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Shotid';
         - sql:
             sql: >
               INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
-              SELECT 2, c.id, 'Punane orav / Red Squirrel', 'Punane shott', 3.50, 3.00, 4.50
+              SELECT 2, c.id, 'Punane orav / Red Squirrel 4 cl', 'Punane shott', 3.50, 3.00, 4.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Shotid';
         - sql:
             sql: >
@@ -756,11 +756,11 @@ databaseChangeLog:
         - sql:
             sql: >
               INSERT INTO inventory (organization_id, product_id, quantity)
-              SELECT 2, p.id, 200 FROM products p WHERE p.organization_id = 2 AND p.name = 'Error 404';
+              SELECT 2, p.id, 200 FROM products p WHERE p.organization_id = 2 AND p.name = 'Error 404 4 cl';
         - sql:
             sql: >
               INSERT INTO inventory (organization_id, product_id, quantity)
-              SELECT 2, p.id, 180 FROM products p WHERE p.organization_id = 2 AND p.name = 'Punane orav / Red Squirrel';
+              SELECT 2, p.id, 180 FROM products p WHERE p.organization_id = 2 AND p.name = 'Punane orav / Red Squirrel 4 cl';
         - sql:
             sql: >
               INSERT INTO inventory (organization_id, product_id, quantity)
