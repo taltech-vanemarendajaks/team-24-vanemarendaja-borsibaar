@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"; 
 import { backendUrl } from "@/utils/constants";
 
 export async function GET(request: NextRequest) {
