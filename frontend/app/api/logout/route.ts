@@ -1,49 +1,44 @@
 import { NextRequest, NextResponse } from "next/server";
-import { backendUrl } from "@/utils/constants";
+import { backendUrl } from "@/utils/constants"; 
 
 export async function POST(request: NextRequest) {
   try {
-    // Call backend logout endpoint to invalidate session
-    await fetch(`${backendUrl}/auth/logout`, {
-      method: "POST",
-      headers: {
-        Cookie: request.headers.get("cookie") || "",
-      },
-      credentials: "include",
-    });
-
-    // Create response
-    const response = NextResponse.json(
-      { success: true, message: "Logged out successfully" },
-      { status: 200 }
-    );
-
-    // Clear the JWT cookie (backend also does this, but we do it here too for redundancy)
-    response.cookies.set("jwt", "", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 0,
-      path: "/",
-    });
-
-    return response;
-  } catch (error) {
-    console.error("Logout error:", error);
-    // Even if backend fails, clear the cookie
-    const response = NextResponse.json(
-      { success: false, message: "Logout failed" },
-      { status: 500 }
-    );
-
-    response.cookies.set("jwt", "", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 0,
-      path: "/",
-    });
-
-    return response;
-  }
-}
+	const body = await request.json();
+	const cookie = request.headers.get("cookie");
+	
+	const response = await fetch(`${backendUrl}/api/sales`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			...(cookie && { Cookie: cookie }),
+			},
+			credentials: "include",
+			body: JSON.stringify(body),
+		});
+			
+		if (!response.ok) {
+		      let errorMessage = "Failed to process sale"; // 🔹 [MUUDATUS 4]
+	
+		      try {
+		        errorMessage = await response.text();
+		       } catch (_) {}
+		
+		      return NextResponse.json(
+	            { error: errorMessage },
+		        { status: response.status }
+		      );
+		    }	
+			
+			const data = await response.json();
+			return NextResponse.json(data, { status: 201 });
+			
+			} catch (error) {
+				console.error("Proxy error:", error);
+				
+				return NextResponse.json(
+					{ error: "Internal server error" }, 
+					{ status: 500 }
+				);
+			}
+		}
