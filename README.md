@@ -47,7 +47,16 @@ cd frontend && npm run lint
 ```bash
 # Start full development environment (DB and backend)
 docker compose up
-```
+
+# Rebuild containers if configuration or dependencies changed
+docker compose up --build
+
+### PowerShell (Windows)
+
+On Windows PowerShell, use `docker compose` instead of `docker-compose`:
+
+docker compose up
+docker compose up --build
 
 ## Key Backend Architecture
 
