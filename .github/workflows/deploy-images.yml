@@ -23,6 +23,7 @@ jobs:
       - name: Verify secret existance
         run: | 
           echo "Length of user: ${#SSH_USER}" 
+          
 
       # - name: Set up JDK 21
       #   uses: actions/setup-java@v4
