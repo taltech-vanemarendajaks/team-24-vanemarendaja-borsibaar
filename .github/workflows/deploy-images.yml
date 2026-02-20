@@ -79,24 +79,23 @@ jobs:
           set -e
 
           mkdir -p $DEPLOY_PATH
-          cd deploy
+          cd $DEPLOY_PATH
+          ls -a
 
           # Extract deployment package
           tar xzf /tmp/deployment.tar.gz
           rm /tmp/deployment.tar.gz
 
-          # Check if docker-compose file exists
-          if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
-            echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
-            exit 1
-          fi
+#          # Check if docker-compose file exists
+ #         if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
+  #          echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
+   #         exit 1
+    #      fi
 
-          ls -a
-
-          # Copy environment file if exists
-          if [ -f .env.production ]; then
-            cp .env.production .env
-          fi
+    #      # Copy environment file if exists
+ #         if [ -f .env.production ]; then
+  #          cp .env.production .env
+   #       fi
 
       #     # Clean/repair builder cache and avoid BuildKit flakiness
       #     # sudo systemctl restart docker
