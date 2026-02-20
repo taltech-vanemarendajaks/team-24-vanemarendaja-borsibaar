@@ -82,7 +82,7 @@ jobs:
           cd $DEPLOY_PATH
 
           ls -a
-          ls deploy/
+          ls deploy/deploy/
 
       #     # Extract deployment package
       #     tar xzf /tmp/deployment.tar.gz
