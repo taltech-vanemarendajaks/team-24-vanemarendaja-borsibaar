@@ -57,7 +57,7 @@ jobs:
       - name: Create deployment package
         run: |
           tar czf deployment.tar.gz \
-            deploy 
+            deploy/ 
 
       - name: Install sshpass and openssh-client
         run: |
@@ -82,7 +82,6 @@ jobs:
           cd $DEPLOY_PATH
 
           ls -a
-          ls deploy/
 
       #     # Extract deployment package
       #     tar xzf /tmp/deployment.tar.gz
