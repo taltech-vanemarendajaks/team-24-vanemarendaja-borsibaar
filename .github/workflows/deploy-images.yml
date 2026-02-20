@@ -50,9 +50,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan "$SERVER_IP" >> ~/.ssh/known_hosts
 
-      - name: Create .env from secret
+      - name: Create .env.production from secret
         run: |
-          printf '%s\n' "$ENV_PRODUCTION_FILE" > .env
+          echo "$ENV_PRODUCTION_FILE" > .env.production
 
       - name: Create deployment package
         run: |
@@ -92,10 +92,10 @@ jobs:
           fi
 
           ls
-          
+
           # Copy environment file if exists
-          if [ -f .env ]; then
-            cp .env .env
+          if [ -f .env.production ]; then
+            cp .env.production .env
           fi
 
           # Clean/repair builder cache and avoid BuildKit flakiness
