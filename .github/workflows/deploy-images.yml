@@ -51,18 +51,14 @@ jobs:
           ssh-keyscan "$SERVER_IP" >> ~/.ssh/known_hosts
 
       - name: Create .env.production from secret
-        env: 
-          ENV_PRODUCTION_FILE: ${{ secrets.ENV_PRODUCTION_FILE }}
         run: |
           printf '%s\n' "$ENV_PRODUCTION_FILE" | tr -d '\r' > .env.production
-
-          echo "Checking for file..."
-          ls -a | grep .env.production
 
       - name: Create deployment package
         run: |
           tar czf deployment.tar.gz \
-            deploy
+            deploy \
+            deploy/.env.production
 
       - name: Install sshpass and openssh-client
         run: |
@@ -96,7 +92,7 @@ jobs:
             exit 1
           fi
 
-          ls ../
+          ls
 
           # Copy environment file if exists
           if [ -f .env.production ]; then
