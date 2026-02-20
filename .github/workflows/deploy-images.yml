@@ -91,6 +91,8 @@ jobs:
             exit 1
           fi
 
+          ls
+          
           # Copy environment file if exists
           if [ -f .env ]; then
             cp .env .env
