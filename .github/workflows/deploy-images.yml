@@ -78,7 +78,7 @@ jobs:
             "$SSH_USER@$SERVER_IP" << EOF
           set -e
 
-          mkdir -p $DEPLOY_PATH
+          mkdir -p $DEPLOY_PATH/deploy
           cd $DEPLOY_PATH
 
           ls -a
