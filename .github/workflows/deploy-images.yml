@@ -90,6 +90,8 @@ jobs:
           tar xzf /tmp/deployment.tar.gz
           rm /tmp/deployment.tar.gz
 
+          ls
+
           # Check if docker-compose file exists
           if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
             echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
