@@ -79,7 +79,7 @@ jobs:
           set -e
 
           mkdir -p $DEPLOY_PATH
-          cd $DEPLOY_PATH
+          cd $DEPLOY_PATH/deploy
           ls -a
 
           # Extract deployment package
