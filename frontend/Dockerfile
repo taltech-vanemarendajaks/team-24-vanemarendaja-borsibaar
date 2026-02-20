@@ -1,3 +1,6 @@
+## Removed frontend/ dir infront of all when building a standalone image
+## build image inside of frontend/ dir
+
 # Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
