@@ -51,8 +51,10 @@ jobs:
           ssh-keyscan "$SERVER_IP" >> ~/.ssh/known_hosts
 
       - name: Create .env.production from secret
+        shell: bash
         run: |
-          echo "$ENV_PRODUCTION_FILE" > .env.production
+          cat <<EOF > .env.production "$ENV_PRODUCTION_FILE" 
+          EOF 
 
       - name: Create deployment package
         run: |
