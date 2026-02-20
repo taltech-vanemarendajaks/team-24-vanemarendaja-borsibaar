@@ -51,11 +51,8 @@ jobs:
           ssh-keyscan "$SERVER_IP" >> ~/.ssh/known_hosts
 
       - name: Create .env.production from secret
-        shell: bash
         run: |
-          cat <<EOF > .env.production 
-          ${{ secrets.ENV_PRODUCTION_FILE }} 
-          EOF 
+          printf '%s\n' "$ENV_PRODUCTION_FILE" > .env.production
 
       - name: Create deployment package
         run: |
@@ -94,7 +91,7 @@ jobs:
             exit 1
           fi
 
-          ls -a
+          ls ../
 
           # Copy environment file if exists
           if [ -f .env.production ]; then
