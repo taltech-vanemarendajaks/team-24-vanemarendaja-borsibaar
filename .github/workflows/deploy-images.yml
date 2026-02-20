@@ -53,7 +53,8 @@ jobs:
       - name: Create .env.production from secret
         shell: bash
         run: |
-          cat <<EOF > .env.production "$ENV_PRODUCTION_FILE" 
+          cat <<EOF > .env.production 
+          ${{ secrets.ENV_PRODUCTION_FILE }} 
           EOF 
 
       - name: Create deployment package
