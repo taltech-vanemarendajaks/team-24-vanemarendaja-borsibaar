@@ -79,41 +79,44 @@ jobs:
           set -e
 
           mkdir -p $DEPLOY_PATH
-          cd $DEPLOY_PATH/deploy
+          cd $DEPLOY_PATH
 
-          # Extract deployment package
-          tar xzf /tmp/deployment.tar.gz
-          rm /tmp/deployment.tar.gz
+          ls -a
+          ls deploy/
 
-          # Check if docker-compose file exists
-          if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
-            echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
-            exit 1
-          fi
+      #     # Extract deployment package
+      #     tar xzf /tmp/deployment.tar.gz
+      #     rm /tmp/deployment.tar.gz
 
-          ls deploy
+      #     # Check if docker-compose file exists
+      #     if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
+      #       echo "ERROR: $DOCKER_COMPOSE_FILE not found!"
+      #       exit 1
+      #     fi
 
-          # Copy environment file if exists
-          if [ -f .env.production ]; then
-            cp .env.production .env
-          fi
+      #     ls deploy
 
-          # Clean/repair builder cache and avoid BuildKit flakiness
-          # sudo systemctl restart docker
-          # docker buildx prune -af || true
-          # docker builder prune -af || true
-          # docker image prune -af || true
+      #     # Copy environment file if exists
+      #     if [ -f .env.production ]; then
+      #       cp .env.production .env
+      #     fi
 
-          # Stop existing containers
-          docker compose -f "$DOCKER_COMPOSE_FILE" down
+      #     # Clean/repair builder cache and avoid BuildKit flakiness
+      #     # sudo systemctl restart docker
+      #     # docker buildx prune -af || true
+      #     # docker builder prune -af || true
+      #     # docker image prune -af || true
 
-          # Rebuild and start containers
-          docker compose -f "$DOCKER_COMPOSE_FILE" build --no-cache
-          docker compose -f "$DOCKER_COMPOSE_FILE" up -d
+      #     # Stop existing containers
+      #     docker compose -f "$DOCKER_COMPOSE_FILE" down
 
-          # Clean up old images
-          # docker image prune -f
+      #     # Rebuild and start containers
+      #     docker compose -f "$DOCKER_COMPOSE_FILE" build --no-cache
+      #     docker compose -f "$DOCKER_COMPOSE_FILE" up -d
 
-          echo "Deployment complete!"
-          docker compose -f "$DOCKER_COMPOSE_FILE" ps
-          EOF
+      #     # Clean up old images
+      #     # docker image prune -f
+
+      #     echo "Deployment complete!"
+      #     docker compose -f "$DOCKER_COMPOSE_FILE" ps
+      #     EOF
