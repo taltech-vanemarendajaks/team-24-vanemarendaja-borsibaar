@@ -1,5 +1,6 @@
-## Removed frontend/ dir infront of all
+## Removed frontend/ dir infront of all when building a standalone image
 ## build image inside of frontend/ dir
+
 # Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
@@ -9,11 +10,11 @@ ARG NEXT_PUBLIC_BACKEND_URL
 ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
 
 # Install dependencies
-COPY package.json package-lock.json ./
+COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 
 # Copy source and build
-COPY . .
+COPY frontend/ .
 # Next.js picks NEXT_PUBLIC_* client vars at build time
 RUN npm run build
 
