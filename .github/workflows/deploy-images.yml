@@ -52,13 +52,12 @@ jobs:
 
       - name: Create .env.production from secret
         run: |
-          printf '%s\n' "$ENV_PRODUCTION_FILE" | tr -d '\r' > .env.production
+          printf '%s\n' "$ENV_PRODUCTION_FILE" | tr -d '\r' > deploy/.env.production
 
       - name: Create deployment package
         run: |
           tar czf deployment.tar.gz \
-            deploy \
-            deploy/.env.production
+            deploy 
 
       - name: Install sshpass and openssh-client
         run: |
