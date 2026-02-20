@@ -91,7 +91,7 @@ jobs:
             exit 1
           fi
 
-          ls
+          ls deploy
 
           # Copy environment file if exists
           if [ -f .env.production ]; then
