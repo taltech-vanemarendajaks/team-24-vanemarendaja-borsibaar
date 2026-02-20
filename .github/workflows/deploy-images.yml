@@ -90,7 +90,7 @@ jobs:
           tar xzf /tmp/deployment.tar.gz
           rm /tmp/deployment.tar.gz
 
-          ls
+          ls deploy
 
           # Check if docker-compose file exists
           if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
